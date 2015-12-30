@@ -70,3 +70,5 @@ $users = User::all();
 ```
 
 This would result in a collection containing one instance of `User` and one instance of `Employee`.
+
+Check the [tests](tests/) folder for more usage examples.
