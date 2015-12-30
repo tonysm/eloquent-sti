@@ -16,7 +16,10 @@
     "autoload-dev": {
         "psr-4": {
             "SingleTableInheritance\\": "tests/stubs"
-        }
+        },
+        "files": [
+            "tests/TestCase.php"
+        ]
     },
     "require": {
         "illuminate/database": "5.2.*"

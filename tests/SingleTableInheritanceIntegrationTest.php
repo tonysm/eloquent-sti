@@ -2,23 +2,14 @@
 
 namespace SingleTableInheritance;
 
-use PHPUnit_Framework_TestCase;
-use Illuminate\Database\Schema;
-use Illuminate\Database\Connection;
-use Illuminate\Database\Capsule\Manager as DB;
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use TestCase;
 
-class SingleTableInheritanceIntegrationTest extends PHPUnit_Framework_TestCase
+class SingleTableInheritanceIntegrationTest extends TestCase
 {
     public function setUp()
     {
-        $db = new DB;
-        $db->addConnection([
-            'driver'    => 'sqlite',
-            'database'  => ':memory:',
-        ]);
-        $db->bootEloquent();
-        $db->setAsGlobal();
+        parent::setUp();
+
         $this->createSchema();
     }
 
@@ -31,34 +22,9 @@ class SingleTableInheritanceIntegrationTest extends PHPUnit_Framework_TestCase
         });
     }
 
-    /**
-     * Tear down the database schema.
-     *
-     * @return void
-     */
     public function tearDown()
     {
         $this->schema()->drop('users');
-    }
-
-    /**
-     * Get a schema builder instance.
-     *
-     * @return Schema\Builder
-     */
-    protected function schema()
-    {
-        return $this->connection()->getSchemaBuilder();
-    }
-
-    /**
-     * Get a database connection instance.
-     *
-     * @return Connection
-     */
-    protected function connection()
-    {
-        return Eloquent::getConnectionResolver()->connection();
     }
 
     /** @test */
