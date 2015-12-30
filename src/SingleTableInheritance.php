@@ -16,7 +16,7 @@ trait SingleTableInheritance
             static::getBaseClasses()
         );
 
-        // So we don't have to require illuminate/foundation
+        // So we do not have to require illuminate/foundation.
         if (class_exists('\\Illuminate\\Foundation\\Auth\\User')) {
             $baseClasses[] = '\\Illuminate\\Foundation\\Auth\\User';
         }
@@ -109,7 +109,8 @@ trait SingleTableInheritance
     }
 
     /**
-     * @param $childClass
+     * @param string $childClass
+     * @throws ChildClassNotFoundException
      */
     protected static function guardAgainstChildClassNotFound($childClass)
     {
