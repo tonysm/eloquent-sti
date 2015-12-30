@@ -8,7 +8,14 @@
             "email": "tonyzrp@gmail.com"
         }
     ],
-    "require": {},
+    "autoload": {
+        "psr4": {
+            "SingleTableInheritance\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/database": "5.2.*"
+    },
     "require-dev": {
         "phpunit/phpunit": "^5.1"
     }
