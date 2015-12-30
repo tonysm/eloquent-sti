@@ -39,6 +39,6 @@ class SingleTableInheritanceScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where($this->inheritanceAttribute, '=', $this->scopedClass);
+        $builder->where($this->inheritanceAttribute, $this->scopedClass);
     }
 }
