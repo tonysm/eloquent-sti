@@ -43,9 +43,7 @@ trait SingleTableInheritance
         $childClass = array_get($attributes, static::getInheritanceField(), null);
 
         if ($childClass && $childClass != static::class) {
-            if (!class_exists($childClass)) {
-                throw new \RuntimeException("The class {$childClass} does not exist");
-            }
+            static::guardAgainstChildClassNotFound($childClass);
 
             $model = new $childClass($attributes);
             return $model->newFromBuilder($attributes, $connection);
@@ -75,6 +73,8 @@ trait SingleTableInheritance
         $childClass = array_get($attributes, static::getInheritanceField(). null);
 
         if ($childClass && $childClass != static::class) {
+            static::guardAgainstChildClassNotFound($childClass);
+
             return $childClass::create($attributes);
         }
 
@@ -106,5 +106,15 @@ trait SingleTableInheritance
     protected static function getInheritanceField()
     {
         return 'type';
+    }
+
+    /**
+     * @param $childClass
+     */
+    protected static function guardAgainstChildClassNotFound($childClass)
+    {
+        if (!class_exists($childClass)) {
+            throw new ChildClassNotFoundException($childClass);
+        }
     }
 }

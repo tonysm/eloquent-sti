@@ -96,4 +96,11 @@ class SingleTableInheritanceIntegrationTest extends TestCase
         $user = User::create(['type' => Employee::class]);
         $this->assertInstanceOf(Employee::class, $user);
     }
+
+    /** @test */
+    public function throws_exception_when_child_class_not_found()
+    {
+        $this->setExpectedException(ChildClassNotFoundException::class);
+        User::create(['type' => 'NonExistentModel']);
+    }
 }
