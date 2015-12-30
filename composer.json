@@ -1,0 +1,15 @@
+{
+    "name": "tonysm/eloquent-sti",
+    "description": "A simple implementation of single table inheritance for Elqoquent",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tony Messias",
+            "email": "tonyzrp@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
+    }
+}
