@@ -9,8 +9,13 @@
         }
     ],
     "autoload": {
-        "psr4": {
+        "psr-4": {
             "SingleTableInheritance\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SingleTableInheritance\\": "tests/stubs"
         }
     },
     "require": {
