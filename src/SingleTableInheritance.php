@@ -118,4 +118,25 @@ trait SingleTableInheritance
             throw new ChildClassNotFoundException($childClass);
         }
     }
+
+    /**
+     * Create a new instance of the given model.
+     *
+     * @param  array  $attributes
+     * @param  bool  $exists
+     * @return static
+     */
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $field = static::getInheritanceField();
+        $childClass = array_get($attributes, $field, null);
+
+        if ($childClass && $childClass != static::class) {
+            static::guardAgainstChildClassNotFound($childClass);
+            
+            return (new $childClass())->newInstance($attributes, $exists);
+        }
+
+        return parent::newInstance($attributes, $exists);
+    }
 }
